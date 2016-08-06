@@ -15,7 +15,7 @@ import com.mygdx.game.Game;
  * Created by m on 2016-08-06.
  */
 public class ImageFish extends com.badlogic.gdx.scenes.scene2d.ui.Image {
-    private static final int WIDTH = 100;
+    public static final int WIDTH = 100;
     private static final int HEIGHT = 100;
     private static final float IMAGE_X = Game.WIDTH / 2 - (WIDTH / 2);
     private static final float IMAGE_Y = Game.HEIGHT / 2 - (HEIGHT / 2) + 20;

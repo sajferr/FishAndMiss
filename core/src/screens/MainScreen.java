@@ -1,7 +1,12 @@
 package screens;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.Game;
@@ -15,8 +20,7 @@ import images.ImageFish;
 public class MainScreen extends  AbstractScreen {
     Texture textureWallpaper;
     Texture textureFish;
-    Image imageWallpaper;
-    ImageFish imageFish;
+
     MainScreen(Game game) {
         super(game);
         initMain();
@@ -26,6 +30,7 @@ public class MainScreen extends  AbstractScreen {
     private void initMain() {
         imageWallpaper = new Image(new Texture("photos/wallpaper.png"));
         imageFish = new ImageFish(new Texture("photos/fish.png"));
+        Gdx.input.setInputProcessor(stage);
         stage.addActor(imageWallpaper);
         stage.addActor(imageFish);
 
@@ -42,6 +47,7 @@ public class MainScreen extends  AbstractScreen {
     public void drawer() {
         super.drawer();
         stage.draw();
+        stage.act();
 
 
 
