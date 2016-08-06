@@ -17,9 +17,12 @@ import com.mygdx.game.Game;
 public class ImageFish extends com.badlogic.gdx.scenes.scene2d.ui.Image {
     public static final int WIDTH = 100;
     private static final int HEIGHT = 100;
-    private static final float IMAGE_X = Game.WIDTH / 2 - (WIDTH / 2);
-    private static final float IMAGE_Y = Game.HEIGHT / 2 - (HEIGHT / 2) + 20;
-
+    Action akcja1;
+    Action akcja2;
+    private static float IMAGE_X = Game.WIDTH / 2 - (WIDTH / 2);
+    private static  float IMAGE_Y = Game.HEIGHT / 2 - (HEIGHT / 2) + 20;
+    int xx =0;
+      public  boolean coKlikac=false;
     public ImageFish(Texture texture) {
         super(texture);
         this.setHeight(HEIGHT);
@@ -31,26 +34,33 @@ public class ImageFish extends com.badlogic.gdx.scenes.scene2d.ui.Image {
 
 
 
-    public void initActions() {
+    public void initActionsXRight() {
+        if (coKlikac ==true) {
+
+
+            IMAGE_X += 5;
+            System.out.println(IMAGE_Y);
+            Action akcja1 = Actions.moveTo(IMAGE_X,IMAGE_Y, 0.1f);
+   //         this.removeAction(akcja2);
+            this.addAction(akcja1);
+
+
+        }
+
+
+        if (coKlikac == false) {
+            IMAGE_X -= 5;
+            System.out.println(IMAGE_Y);
+            Action akcja2 = Actions.moveTo(IMAGE_X,IMAGE_Y, 0.1f);
+         //   this.removeAction(akcja1);
+            this.addAction(akcja2);
 
 
 
-//        int moveX=MathUtils.random(-130,130);
-//        int moveY=MathUtils.random(-20,20);
-//
-//        System.out.println("lol");
-//       Action action = Actions.sequence(Actions.moveBy(moveX,moveY,0.2f,Interpolation.circle),
-//               Actions.moveBy(-moveX,-moveY,0.2f,Interpolation.circle)
-//               );
-//        Action action2 = Actions.sequence(
-//                Actions.sizeTo()
+        }
 
 
-
-
-    }
-
-}
+    }}
 
 
 

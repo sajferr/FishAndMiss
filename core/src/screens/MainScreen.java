@@ -28,11 +28,11 @@ public class MainScreen extends  AbstractScreen {
     }
 
     private void initMain() {
-        imageWallpaper = new Image(new Texture("photos/wallpaper.png"));
-        imageFish = new ImageFish(new Texture("photos/fish.png"));
+
         Gdx.input.setInputProcessor(stage);
         stage.addActor(imageWallpaper);
         stage.addActor(imageFish);
+
 
     }
 

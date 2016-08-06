@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Game;
@@ -29,38 +30,61 @@ public abstract class AbstractScreen implements Screen {
 
 
 
-    AbstractScreen(Game game){
+    AbstractScreen(Game game) {
         this.game = game;
         createcamera();
-
         init();
-        stage = new Stage(new StretchViewport(Game.WIDTH,Game.HEIGHT,camera)){
-            @Override
-            public boolean keyDown(int keyCode) {
+        stage = new Stage(new StretchViewport(Game.WIDTH, Game.HEIGHT, camera));
 
-                if (keyCode == Input.Keys.A){
+    }
 
-                    xx-=50;
-                    System.out.println(xx);
-                    imageFish.setX(xx);
+    private void updateInput() {
+        if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
 
-                }
-                else if (keyCode==Input.Keys.D){
-                    xx+=50;
-                    imageFish.setX(xx);
-                    System.out.println(xx);
-                }
-
-                else if (keyCode==Input.Keys.S){
-                    System.out.println("siema stary3");
-
-                }
-
-                return super.keyDown(keyCode);
+                System.out.println("lololo");
+                imageFish.coKlikac=false;
+            imageFish.initActionsXRight();
+                stage.addActor(imageFish);
+            stage.act();
             }
 
 
-        };
+        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
+            imageFish.coKlikac=true;
+            imageFish.initActionsXRight();
+                stage.addActor(imageFish);
+            stage.act();
+
+
+    }
+
+
+//            @Override
+//            public boolean keyDown(int keyCode) {
+//
+//                if (keyCode == Input.Keys.A){
+//
+//                    xx-=50;
+//                    System.out.println(xx);
+//                    imageFish.setX(xx);
+//
+//                }
+//                else if (keyCode==Input.Keys.D){
+//                    xx+=50;
+//                    imageFish.setX(xx);
+//                    System.out.println(xx);
+//                }
+//
+//                else if (keyCode==Input.Keys.S){
+//                    System.out.println("siema stary3");
+//
+//                }
+//
+//                return super.keyDown(keyCode);
+//            }
+//
+//
+//        };
 
 
 
@@ -74,6 +98,8 @@ public abstract class AbstractScreen implements Screen {
 
     public void init() {
         batch = new SpriteBatch();
+        imageWallpaper = new Image(new Texture("photos/wallpaper.png"));
+        imageFish = new ImageFish(new Texture("photos/fish.png"));
 
     }
 
@@ -83,6 +109,7 @@ public abstract class AbstractScreen implements Screen {
     @Override
     public void render(float delta) {
         update();
+        updateInput();
         batch.begin();
         drawer();
         batch.setProjectionMatrix(camera.combined);
@@ -90,6 +117,7 @@ public abstract class AbstractScreen implements Screen {
 
 
     }
+
 
     public void drawer() {
 
